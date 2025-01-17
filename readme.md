@@ -41,6 +41,14 @@
 - 生成 Excel 文件可能需要一定时间,请耐心等待
 - 部分旧版本 Excel 可能无法正确显示某些边框样式
 
-## 网站演示
+英文版本
+![image](https://github.com/user-attachments/assets/9b4bd327-0b54-4628-bc07-f0d97138b191)
+
+中文版本
+
+![image](https://github.com/user-attachments/assets/ddf8d47b-c574-4942-8f75-e16e3079bb52)
+
+
+## 官网地址
 
 https://img2excel.openai2025.com
