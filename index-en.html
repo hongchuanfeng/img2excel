@@ -16,6 +16,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VHZX4RZJ5J"></script>
     <script>
@@ -31,33 +33,41 @@
 </head>
 
 <body>
-
-    <div class="row">
+    <div class="row" style="margin-right: 0px">
         <div class="col-xs-6 col-sm-4">
             <h1 class="h-left">
-                图片转Excel
+                Image to Excel
             </h1>
         </div>
         <div class="col-xs-8 h-right">
-            <a title="在线base64转码" href="https://base64.openai2025.com" target="_blank">
-                Base64转码
+            <a title="Base64" href="https://base64.openai2025.com" target="_blank">
+                Base64 Tool
             </a>
-            <a title="JSON格式化工具" href="https://json.openai2025.com" target="_blank">
-                JSON工具
+            <a title="JSON" href="https://json.openai2025.com" target="_blank">
+                JSON Tool
             </a>
-            <a title="正则表达式测试工具" href="https://reg.openai2025.com" target="_blank">
-                正则表达式工具
+            <a title="Regular expression" href="https://reg.openai2025.com" target="_blank">
+                Regular expression tool
             </a>
-            <a title="在线马赛克处理" href="https://mosaic.openai2025.com" target="_blank">在线马赛克处理</a>
-            <a title="在线水印处理" href="https://watermark.openai2025.com" target="_blank">在线水印处理</a>
-            <a title="在线图片压缩" href="https://compress.openai2025.com" target="_blank">在线图片压缩</a>
-            <a title="在线拾取图片颜色" href="https://getcolor.openai2025.com" target="_blank">在线拾取图片颜色</a>
-            <a title="图片转icon" href="https://icon.openai2025.com" target="_blank">图片转icon</a>
+            <a title="mosaic Processing tool" href="https://mosaic.openai2025.com" target="_blank">
+                mosaic tool
+            </a>
+            <a title="watermark Processing" href="https://watermark.openai2025.com" target="_blank">
+                watermark Processing
+            </a>
+            <a title="Picture picking color" href="https://getcolor.openai2025.com" target="_blank">
+                Picture picking color
+            </a>
+            <a title="Image to icon" href="https://icon.openai2025.com" target="_blank">
+                Image to icon
+            </a>
         </div>
     </div>
     <div class="container">
 
-        <p class="text-center mb-4" style="line-height: 1.6; color: mediumvioletred; ">将您的图片转换成Excel艺术作品，支持亮度、对比度等调整，轻松创作像素风格表格艺术</p>
+        <p class="text-center mb-4" style=" color: mediumvioletred;">
+            Convert your images into Excel artwork, supporting adjustments such as brightness and contrast, making it easy to create pixel style table art
+        </p>
         <div class="row">
             <div class="col-md-4">
                 <div class="card p-4 mb-4">
@@ -69,41 +79,55 @@
                                 <polyline points="17 8 12 3 7 8"></polyline>
                                 <line x1="12" y1="3" x2="12" y2="15"></line>
                             </svg>
-                            <p class="mb-0">点击或拖拽图片到这里</p>
+                            <p class="mb-0">
+                                Click or drag the image here
+                            </p>
                         </div>
                     </div>
 
                     <div class="settings card mt-4" id="settings">
                         <div class="card-body">
                             <div class="settings-group mb-4">
-                                <h3 class="h5 mb-3">图片设置</h3>
+                                <h3 class="h5 mb-3">
+                                    Pictures
+                                </h3>
                                 <div class="mb-3">
-                                    <label class="form-label">最大像素数:</label>
+                                    <label class="form-label">
+                                        Maximum number of pixels:
+                                    </label>
                                     <input type="number" id="maxSize" value="50" min="10" max="200" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">亮度调整:</label>
+                                    <label class="form-label">
+                                        Brightness:
+                                    </label>
                                     <div class="d-flex align-items-center">
                                         <input type="range" id="brightness" min="-100" max="100" value="0" class="form-range flex-grow-1">
                                         <span class="range-value ms-2">0</span>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">对比度:</label>
+                                    <label class="form-label">
+                                        contrast ratio:
+                                    </label>
                                     <div class="d-flex align-items-center">
                                         <input type="range" id="contrast" min="-100" max="100" value="0" class="form-range flex-grow-1">
                                         <span class="range-value ms-2">0</span>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">饱和度:</label>
+                                    <label class="form-label">
+                                        saturation:
+                                    </label>
                                     <div class="d-flex align-items-center">
                                         <input type="range" id="saturation" min="-100" max="100" value="0" class="form-range flex-grow-1">
                                         <span class="range-value ms-2">0</span>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">色调:</label>
+                                    <label class="form-label">
+                                        hue:
+                                    </label>
                                     <div class="d-flex align-items-center">
                                         <input type="range" id="hue" min="-180" max="180" value="0" class="form-range flex-grow-1">
                                         <span class="range-value ms-2">0</span>
@@ -112,29 +136,31 @@
                             </div>
 
                             <div class="settings-group">
-                                <h3 class="h5 mb-3">Excel设置</h3>
+                                <h3 class="h5 mb-3">
+                                    Excel Settings
+                                </h3>
                                 <div class="mb-3">
-                                    <label class="form-label">单元格大小:</label>
+                                    <label class="form-label">cell size:</label>
                                     <input type="number" id="cellSize" value="40" min="20" max="100" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">工作表背景色:</label>
+                                    <label class="form-label">Background color of worksheet:</label>
                                     <input type="color" id="sheetBackground" value="#FFFFFF" class="form-control form-control-color">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">单元格边框:</label>
+                                    <label class="form-label">Cell Border:</label>
                                     <select id="borderStyle" class="form-select">
-                                        <option value="none">无边框</option>
-                                        <option value="thin">细边��</option>
-                                        <option value="medium">中等边框</option>
+                                        <option value="none">no border</option>
+                                        <option value="thin">Thin edge</option>
+                                        <option value="medium">Medium border</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">边框颜色:</label>
+                                    <label class="form-label">Border color:</label>
                                     <input type="color" id="borderColor" value="#000000" class="form-control form-control-color">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">缩放比例:</label>
+                                    <label class="form-label">scaling:</label>
                                     <select id="zoomScale" class="form-select">
                                         <option value="50">50%</option>
                                         <option value="75">75%</option>
@@ -155,15 +181,17 @@
                     <div class="pixel-preview">
                         <div id="pixelGrid" class="pixel-grid"></div>
                     </div>
-                    <button class="btn btn-primary w-100" id="generateButton">生成Excel文件</button>
-                    <div id="loading" class="loading text-muted mt-3">正在生成Excel文件，请稍候...</div>
+                    <button class="btn btn-primary w-100" id="generateButton">Generate Excel file</button>
+                    <div id="loading" class="loading text-muted mt-3">Generating Excel file, please wait.</div>
                 </div>
             </div>
         </div>
     </div>
+
     <canvas id="canvas" style="display:none;"></canvas>
     <script src="main.js"></script>
-    <center>(<a href="./index.html">简体中文</a> | <a href="./index-en.html">English</a>)</center>
+    <center>(<a href="./index.html">Simplified Chinese</a> | <a href="./index-en.html">English</a>)</center>
+
 </body>
 
 </html>
