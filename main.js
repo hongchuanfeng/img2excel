@@ -10,15 +10,17 @@ const settings = document.getElementById('settings');
 
 // 获取所有设置输入
 const maxSizeInput = document.getElementById('maxSize');
-const cellSizeInput = document.getElementById('cellSize');
 const brightnessInput = document.getElementById('brightness');
 const contrastInput = document.getElementById('contrast');
 const saturationInput = document.getElementById('saturation');
 const hueInput = document.getElementById('hue');
-const sheetBackgroundInput = document.getElementById('sheetBackground');
-const borderStyleInput = document.getElementById('borderStyle');
-const borderColorInput = document.getElementById('borderColor');
-const zoomScaleInput = document.getElementById('zoomScale');
+
+// Excel设置默认值
+const cellSize = 40;
+const sheetBackground = '#FFFFFF';
+const borderStyle = 'none';
+const borderColor = '#000000';
+const zoomScale = 100;
 
 let pixelData = [];
 let originalImageData = null;
@@ -26,16 +28,16 @@ let originalImageData = null;
 // 拖拽上传
 uploadArea.addEventListener('dragover', (e) => {
     e.preventDefault();
-    uploadArea.style.borderColor = '#45a049';
+    uploadArea.classList.add('dragover');
 });
 
 uploadArea.addEventListener('dragleave', () => {
-    uploadArea.style.borderColor = '#ccc';
+    uploadArea.classList.remove('dragover');
 });
 
 uploadArea.addEventListener('drop', (e) => {
     e.preventDefault();
-    uploadArea.style.borderColor = '#ccc';
+    uploadArea.classList.remove('dragover');
     const file = e.dataTransfer.files[0];
     if (file && file.type.startsWith('image/')) {
         processImage(file);
@@ -115,23 +117,41 @@ function applyImageAdjustments() {
 
     // 显示预览
     previewImage.src = canvas.toDataURL();
-    previewContainer.style.display = 'block';
-    settings.style.display = 'block';
+    previewImage.style.display = 'block';
+    document.getElementById('noImageMessage').style.display = 'none';
+    document.querySelector('.pixel-preview-section').style.display = 'block';
+    generateButton.style.display = 'block';
 
     // 更新像素预览
     updatePixelPreview();
 }
 
 // 监听图片调整参数变化
-brightnessInput.addEventListener('input', applyImageAdjustments);
-contrastInput.addEventListener('input', applyImageAdjustments);
-saturationInput.addEventListener('input', applyImageAdjustments);
-hueInput.addEventListener('input', applyImageAdjustments);
+brightnessInput.addEventListener('input', (e) => {
+    const valueSpan = e.target.parentElement.querySelector('.range-value');
+    if (valueSpan) valueSpan.textContent = e.target.value;
+    applyImageAdjustments();
+});
+contrastInput.addEventListener('input', (e) => {
+    const valueSpan = e.target.parentElement.querySelector('.range-value');
+    if (valueSpan) valueSpan.textContent = e.target.value;
+    applyImageAdjustments();
+});
+saturationInput.addEventListener('input', (e) => {
+    const valueSpan = e.target.parentElement.querySelector('.range-value');
+    if (valueSpan) valueSpan.textContent = e.target.value;
+    applyImageAdjustments();
+});
+hueInput.addEventListener('input', (e) => {
+    const valueSpan = e.target.parentElement.querySelector('.range-value');
+    if (valueSpan) valueSpan.textContent = e.target.value;
+    applyImageAdjustments();
+});
 maxSizeInput.addEventListener('change', applyImageAdjustments);
 
 // 更新像素预览
 function updatePixelPreview() {
-    pixelGrid.style.gridTemplateColumns = `repeat(${pixelData[0].length}, 8px)`;
+    pixelGrid.style.gridTemplateColumns = `repeat(${pixelData[0].length}, 10px)`;
     pixelGrid.innerHTML = '';
 
     pixelData.forEach(row => {
@@ -151,7 +171,6 @@ generateButton.addEventListener('click', async () => {
     try {
         const workbook = new ExcelJS.Workbook();
         const worksheet = workbook.addWorksheet('Pixel Art');
-        const cellSize = parseInt(cellSizeInput.value);
 
         // Excel中列宽单位约为8像素，行高单位为像素
         const columnWidth = cellSize / 6;
@@ -170,12 +189,8 @@ generateButton.addEventListener('click', async () => {
 
         // 设置工作表背景色
         worksheet.properties.tabColor = {
-            argb: 'FF' + sheetBackgroundInput.value.substring(1)
+            argb: 'FF' + sheetBackground.substring(1)
         };
-
-        // 获取边框样式
-        const borderStyle = borderStyleInput.value;
-        const borderColor = borderColorInput.value;
 
         // 填充颜色
         pixelData.forEach((row, rowIndex) => {
@@ -205,7 +220,7 @@ generateButton.addEventListener('click', async () => {
         worksheet.views = [
             {
                 showGridLines: false,
-                zoomScale: parseInt(zoomScaleInput.value)
+                zoomScale: zoomScale
             }
         ];
 
