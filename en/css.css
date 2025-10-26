@@ -113,8 +113,6 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: var(--shadow-lg);
     padding: 1rem 0;
-    position: relative;
-    z-index: 1000;
 }
 
 .navbar-brand {
@@ -2393,6 +2391,17 @@ footer p {
 
 .pixel-preview::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
+}
+
+/* 现代化导航栏 */
+.modern-navbar {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-lg);
+    padding: 1rem 0;
+    position: relative;
+    z-index: 1000;
 }
 
 /* Modern dropdown menu styles */

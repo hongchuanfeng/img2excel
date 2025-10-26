@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# 允许所有搜索引擎爬虫访问所有文件和目录
+# 包括根目录和 en/ 子目录下的所有内容
+
+# 网站地图位置（如果有的话）
+# Sitemap: https://img2excel.openai2025.com/sitemap.xml
